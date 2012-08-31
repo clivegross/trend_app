@@ -6,6 +6,7 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'haml-rails'
 
 
 # Gems used only for assets and not required
@@ -29,7 +30,15 @@ gem 'rest-client'
 
 group :development, :test do
   # rspec for test-driven dev
+  gem 'awesome_print'
   gem "rspec-rails", "~> 2.11.0"
+  gem 'pry'
+end
+
+group :test do
+	gem "factory_girl_rails"
+	gem "capybara"
+	gem "guard-rspec"
 end
 
 # To use ActiveModel has_secure_password

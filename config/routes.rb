@@ -1,4 +1,21 @@
 TrendApp::Application.routes.draw do
+  get "static_pages/home"
+
+  get "static_pages/about"
+
+  resources :companies
+  resources :daily_quotes
+
+
+  #get "company/show"
+  get "company/list"
+
+  #root :to 'static_pages#home' Why doesnt that work???
+  match "/" => "static_pages#home"
+  match "/about" => "static_pages#about"
+
+  match "/show/:id" => "company#show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,18 @@
+%h1= @company.name
+%dl
+  %dt Ticker symbol
+  %dd= @company.ticker
+  %dt Last closing price
+  %dd= neat_price @last_close
+  %dt Last moving average closing price (20 day MA)
+  %dd= neat_price @last_close_ma
+  %dt Percentage difference
+  %dd= neat_percentage @pct_diff
+%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+  =javascript_include_tag :build_chart
+%body
+  #container{:style => "min-width: 300px; height: 300px; margin: 0 auto"}
+
+.js_data_arrays
+  - @collection.each do |thing|
+    #mycollection[thing]{data: {thing: thing.value}}

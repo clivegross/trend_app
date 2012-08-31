@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TrendApp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Simple Trend Calculator</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header>
+      <div>
+          <nav>
+          	<div><%= link_to "HOME", {:action => 'home', :controller => 'static_pages'} -%><div> 
+            <ul>
+            	<% (1..10).each do | i | %>
+            		<li>
+            			<%= link_to Company.find( i ).ticker, 
+            					{:action => 'show', :id => i, :controller => 'company'} -%>
+            		</li>
+            	<% end %>
+            </ul>
+          </nav>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+  <footer>
+  	<div>
+  		<%= link_to "About", {:action => 'about', :controller => 'static_pages'} -%>
+  	</div>
+  </footer>
 </html>
