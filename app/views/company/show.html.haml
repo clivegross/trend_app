@@ -8,11 +8,10 @@
   %dd= neat_price @last_close_ma
   %dt Percentage difference
   %dd= neat_percentage @pct_diff
-%meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-  =javascript_include_tag :build_chart
+%script
+  != "close_array_j = #{js_series_builder(@date_array, @close_array).to_json};"
+  != "avg_array_j = #{js_series_builder(@date_array, @moving_avg_array).to_json};"
 %body
+  =javascript_include_tag :build_chart
   #container{:style => "min-width: 300px; height: 300px; margin: 0 auto"}
 
-.js_data_arrays
-  - @collection.each do |thing|
-    #mycollection[thing]{data: {thing: thing.value}}

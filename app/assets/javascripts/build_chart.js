@@ -3,22 +3,28 @@ $(function () {
   $(document).ready(function() {
     chart = new Highcharts.Chart({
       chart: {
-          renderTo: 'container',
+        renderTo: 'container',
+        zoomType: 'x',
+        spacingRight: 20
       },
       title: {
-          text: 'Stock Price Over Past Year'
+        text: 'Stock Price Over Past Year'
       },
       xAxis: {
-          type: "datetime"
+        type: "datetime", 
       },
       yAxis: {
-          title: {
-              text: 'Price ($)'
+        title: {
+          text: 'Price ($)'
           }
       },
       series: [{
-          name: 'Closing Price',
-          data: [1, 3, 5, 4, 2]
+        name: 'Closing Price',
+        type: 'area',
+        data: close_array_j
+      }, {
+        name: '20 Day Moving Average',
+        data: avg_array_j
       }]
     });
   });    

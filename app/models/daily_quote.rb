@@ -6,6 +6,11 @@ class DailyQuote < ActiveRecord::Base
   validates_presence_of :closing_price, :company_id, :date
   #validates uniqueness: true
 
+  def self.close_on_date(date)
+    company = Company.find(3)
+    where(date: date, company_id: company.id).map(&:closing_price)
+  end
+
   def self.destroy_old_data
     # We are only keeping data up to 1 year old
     date_limit = Date.today-366
