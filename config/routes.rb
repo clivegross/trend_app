@@ -10,11 +10,15 @@ TrendApp::Application.routes.draw do
   #get "company/show"
   get "company/list"
 
+  (1..10).each do | i |
+    match '/' + Company.find(i).ticker => "company#show", id: i
+  end
+
+
   #root :to 'static_pages#home' Why doesnt that work???
-  match "/" => "static_pages#home"
+  match '/' => "static_pages#home"
   match "/about" => "static_pages#about"
 
-  match "/show/:id" => "company#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

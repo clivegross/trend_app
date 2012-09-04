@@ -5,8 +5,9 @@ class CompanyController < ApplicationController
 
   def show
   	@company = Company.find(params[:id])
+    @ticker = @company.ticker
   	@last_close = @company.fetch_last_close
-  	@last_close_ma = @company.calc_last_close_ma
+  	@last_close_avg = @company.fetch_last_avg
   	@pct_diff = @company.calc_last_close_pdiff
   	@close_array = DailyQuote.where(company_id: @company.id).map(&:closing_price)
   	@date_array = DailyQuote.where(company_id: @company.id).limit(@close_array.length).map(&:date)

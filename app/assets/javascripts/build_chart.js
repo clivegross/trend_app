@@ -3,7 +3,7 @@ $(function () {
   $(document).ready(function() {
     chart = new Highcharts.Chart({
       chart: {
-        renderTo: 'container',
+        renderTo: 'chart',
         zoomType: 'x',
         spacingRight: 20
       },
@@ -16,7 +16,33 @@ $(function () {
       yAxis: {
         title: {
           text: 'Price ($)'
+          },
+        max: y_max_j,
+        min: y_min_j
+      },
+      plotOptions: {
+        line: {
+          marker: {
+            enabled: false,
+            states: {
+              hover: {
+                enabled: true,
+                  radius: 5
+              }
+            }
           }
+        },
+        area: {
+          marker: {
+            enabled: false,
+            states: {
+              hover: {
+                enabled: true,
+                  radius: 5
+              }
+            }
+          }
+        }
       },
       series: [{
         name: 'Closing Price',

@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
   attr_accessible :name, :ticker
 
   has_many :daily_quotes
+  has_many :moving_averages
 
   validates_presence_of :name, :ticker
 
@@ -27,20 +28,13 @@ class Company < ActiveRecord::Base
   end
 
   # calculate the 20 day moving average for the last closing price for as company
-  def calc_last_close_ma
-    # get array of last 20 closing prices
-    last_20_array = daily_quotes.order("date DESC").limit(20).map(&:closing_price)
-    # calc sum of array
-    last_20_sum = last_20_array.inject{|sum,x| sum + x }
-    # calc number of terms in array
-    last_20_len = last_20_array.length
-    # avg = sum/nterms
-    last_20_avg = last_20_sum/last_20_len
+  def fetch_last_avg
+    last_avg = moving_averages.order(:date).last.avg_closing_price
   end
 
   # calculate percentage difference between last closing price and moving avg
   def calc_last_close_pdiff
-    pdiff = 100*(fetch_last_close-calc_last_close_ma)/fetch_last_close
+    pdiff = 100*(fetch_last_close-fetch_last_avg)/fetch_last_close
   end
 
 

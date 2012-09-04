@@ -10,28 +10,34 @@
     <![endif]-->
   </head>
   <body>
-    <header>
-      <div>
-          <nav>
-          	<div><%= link_to "HOME", {:action => 'home', :controller => 'static_pages'} -%><div> 
-            <ul>
-            	<% (1..10).each do | i | %>
-            		<li>
-            			<%= link_to Company.find( i ).ticker, 
-            					{:action => 'show', :id => i, :controller => 'company'} -%>
-            		</li>
-            	<% end %>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <%= link_to "Home", '/' -%>
+              </li>
+              <% (1..10).each do | i | %>
+              <li>
+                <%= link_to Company.find(i).ticker, 
+                '/' + Company.find(i).ticker -%>
+              </li>
+              <% end %>
             </ul>
-          </nav>
+          </div>
+        </div>
       </div>
-    </header>
-    <div class="container">
+    <div class="container-fluid">
       <%= yield %>
     </div>
   </body>
   <footer>
   	<div>
-  		<%= link_to "About", {:action => 'about', :controller => 'static_pages'} -%>
+  		<%= link_to "About", '/about' -%>
   	</div>
   </footer>
 </html>
