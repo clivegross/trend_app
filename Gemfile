@@ -34,7 +34,6 @@ group :development, :test do
   gem 'awesome_print'
   gem "rspec-rails", "~> 2.11.0"
   gem 'pry'
-  gem 'sqlite3'
 end
 
 group :test do

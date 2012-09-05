@@ -4,7 +4,8 @@ class CompanyController < ApplicationController
   end
 
   def show
-  	@company = Company.find(params[:id])
+
+  	@company = params[:id] ? Company.find(params[:id]) : Company.find_by_ticker(params[:ticker])
     @ticker = @company.ticker
   	@last_close = @company.fetch_last_close
   	@last_close_avg = @company.fetch_last_avg
