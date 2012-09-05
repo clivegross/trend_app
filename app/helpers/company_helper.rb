@@ -15,12 +15,20 @@ module CompanyHelper
       chart_array[index] = [x_array[index], price]
     end
   end
-  
+
   def y_max(array)
     array.max * 1.02
   end
 
   def y_min(array)
     array.min * 0.95
+  end
+
+  def which_image(percentage)
+    if percentage > 0
+      image_tag "bull.jpeg"
+    else
+      image_tag "bear.png"
+    end
   end
 end

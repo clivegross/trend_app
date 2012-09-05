@@ -8,12 +8,14 @@
   %dd= neat_price @last_close_avg
   %dt Percentage difference
   %dd= neat_percentage @pct_diff
+  %dt Current trend
+  %dd= which_image @pct_diff
 %script
   != "close_array_j = #{js_series_builder(@date_array, @close_array).to_json};"
   != "avg_array_j = #{js_series_builder(@date_array, @moving_avg_array).to_json};"
   != "y_max_j = #{y_max(@close_array).to_json};"
   != "y_min_j = #{y_min(@close_array).to_json};"
 %body
-  =javascript_include_tag :build_chart
+  %script{:src => "build_chart.js"}
   #chart{:style => "min-width: 350px; height: 300px; margin: 0 auto"}
 

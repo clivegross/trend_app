@@ -21,12 +21,7 @@
               <li>
                 <%= link_to "Home", '/' -%>
               </li>
-              <% (1..10).each do | i | %>
-              <li>
-                <%= link_to Company.find(i).ticker, 
-                '/' + Company.find(i).ticker -%>
-              </li>
-              <% end %>
+              <%= ticker_links %>
             </ul>
           </div>
         </div>
